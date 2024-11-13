@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="ToDo.MVMM.Views.TasksView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ToDo.MVMM.Views"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:model="clr-namespace:ToDo.MVMM.Models" 
+             xmlns:Converters="clr-namespace:ToDo.ValueConverters" 
+             xmlns:custom="clr-namespace:ToDo.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Converters:DateConverter x:Key="DateConverter"/>
+
+
+        <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="Background" Value="#242424"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border x:Name="Border" Background="{TemplateBinding Background}" Height="70" Margin="10 10 10 0" CornerRadius="5">
+                            <DockPanel>
+                                <Border Width="30" Background="{Binding ColorTag}" CornerRadius="5">
+                                    <Border.OpacityMask>
+                                        <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0">
+                                            <GradientStop Offset="0.55" Color="Black"/>
+                                            <GradientStop Offset="0.55" Color="Transparent"/>
+                                        </LinearGradientBrush>
+                                    </Border.OpacityMask>
+                                </Border>
+                                <ContentControl>
+                                    <Grid>
+                                        <StackPanel HorizontalAlignment="Left">
+                                            <TextBlock Text="{Binding Name}" FontSize="15" Margin="0 15 0 0"/>
+                                            <StackPanel Margin="0 5 0 0" Orientation="Horizontal" CanHorizontallyScroll="False">
+                                                <TextBlock Text="{Binding StartDate, Converter={StaticResource DateConverter}}"
+                                                       FontSize="13" Foreground="Gray" />
+
+                                                <TextBlock Text="-" FontSize="13" Foreground="Gray" Margin="5 0 0 0"/>
+
+                                                <TextBlock Text="{Binding EndDate, Converter={StaticResource DateConverter}}"
+                                                       FontSize="13" Foreground="Gray" Margin="5 0 0 0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <custom:CustomButton x:Name="Task_Edit"
+                                                             Width="45" HorizontalAlignment="Right" Margin="0 0 30 0"
+                                                             Background="#242424" HoverColor="Gray" 
+                                                             ActiveColor="DarkGray" PreviewMouseLeftButtonDown="Task_Edit_PreviewMouseLeftButtonDown"
+                                                             Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=DataContext.EditTaskCommand}"
+                                                             CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                            <Image Source="../../Media/edit.png" Width="20"/>
+                                        </custom:CustomButton>
+
+                                        <custom:CustomButton x:Name="Task_Delete" Background="#242424" 
+                                                             HoverColor="Red" ActiveColor="#ab0b00"
+                                                             CornerRadius="5"
+                                                             Width="40" HorizontalAlignment="Right" 
+                                                             Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=DataContext.DeleteTaskCommand}"
+                                                             CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
+                                            <custom:CustomButton.Content>
+                                                <Image Source="..\..\Media\delete.png" Width="25" HorizontalAlignment="Center"/>
+                                            </custom:CustomButton.Content>
+                                            <custom:CustomButton.OpacityMask>
+                                                <LinearGradientBrush StartPoint="1, 1" EndPoint="0, 1">
+                                                    <GradientStop Offset="0.9" Color="Black"/>
+                                                    <GradientStop Offset="0.9" Color="Transparent"/>
+                                                </LinearGradientBrush>
+                                            </custom:CustomButton.OpacityMask>
+                                        </custom:CustomButton>
+                                    </Grid>
+                                </ContentControl>
+                            </DockPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4f4f4f"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#636363"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+        <ListView Background="#181818" ItemsSource="{Binding Tasks}" Name="TaskList"
+                  BorderThickness="0"
+                  SelectedItem="{Binding SelectedTask}"
+                  Foreground="White">
+
+        </ListView>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.3*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <custom:CustomTextBox
+                                  Margin="10 15 5 15"
+                                  HorizontalAlignment="Stretch"
+                                  TextBoxBackground="#343434"
+                                  PlaceHolderTextForeground="Gray"
+                                  Foreground="LightGray"
+                                  TextBoxCaretColor="LightGray"
+                                  PlaceHolderText="Task Title"
+                                  CornerRadius="5"
+                                  x:Name="Add_Task_TextBox"
+                                  TextBoxText="{Binding AddTaskName}"
+                                  />
+            <custom:CustomButton Grid.Column="1"
+                                 Background="#343434"
+                                 HoverColor="#535353"
+                                 ActiveColor="#676767"
+                                 CornerRadius="5"
+                                 Margin="5 15 20 15"
+                                 Content="Add"
+                                 FontSize="20"
+                                 Foreground="LightGray"
+                                 x:Name="Task_Add"
+                                 Command="{Binding AddTaskCommand}"/>
+
+            <Popup IsOpen="{Binding IsEditing}" StaysOpen="True" AllowsTransparency="True"
+                   PlacementTarget="{Binding ElementName=MainGrid}" Placement="Center" Closed="Popup_Closed">
+                <local:EditTaskView Width="470" Height="400" DataContext="{Binding EditTaskVM}"/>
+            </Popup>
+
+
+        </Grid>
+
+    </Grid>
+</UserControl>

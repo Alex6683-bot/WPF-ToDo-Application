@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Media\CalendarIcon.png" />
+    <None Remove="Media\delete.png" />
+    <None Remove="Media\edit.png" />
+    <None Remove="Media\ToDoLogo.ico" />
+    <None Remove="Media\ToDoLogo.png" />
+    <None Remove="Media\UserIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Media\CalendarIcon.png" />
+    <Resource Include="Media\delete.png" />
+    <Resource Include="Media\edit.png" />
+    <Resource Include="Media\ToDoLogo.ico" />
+    <Resource Include="Media\ToDoLogo.png" />
+    <Resource Include="Media\UserIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.1" />
+  </ItemGroup>
+
+</Project>
