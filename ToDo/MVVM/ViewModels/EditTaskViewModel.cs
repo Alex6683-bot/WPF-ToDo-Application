@@ -1,15 +1,32 @@
 ﻿using System.Windows.Input;
 using System.Windows.Media;
-using ToDo.MVMM.Models;
-using ToDo.MVMM.Utilities;
+using ToDo.MVVM.Models;
+using ToDo.MVVM.Utilities;
 using ToDo.MVVM.Commands;
 
-namespace ToDo.MVMM.ViewModels
+namespace ToDo.MVVM.ViewModels
 {
     class EditTaskViewModel : ViewModelBase
     {
         private bool isEnabled = true;
         private TaskObject task;
+
+        private bool submittable = true;
+
+
+        public bool Submittable
+        {
+            get => submittable;
+            set
+            {
+                if (value != submittable)
+                {
+                    submittable = value;
+                    OnPropertyChanged();
+                    ((CommandBase)SubmitCommand).OnCanExecuteChanged();
+                }
+            }
+        }
 
         public bool IsEnabled
         {
@@ -36,9 +53,6 @@ namespace ToDo.MVMM.ViewModels
             }
         }
 
-        public ICommand Submit { get; }
-
-
         public DateTime StartDate
         {
             get => task.StartDate;
@@ -47,6 +61,7 @@ namespace ToDo.MVMM.ViewModels
                 if (value != task.StartDate)
                 {
                     task.StartDate = value;
+                    Submittable = (StartDate > EndDate) ? false : true;
                     OnPropertyChanged();
                 }
             }
@@ -60,6 +75,7 @@ namespace ToDo.MVMM.ViewModels
                 if (value != task.EndDate)
                 {
                     task.EndDate = value;
+                    Submittable = (StartDate > EndDate) ? false : true;
                     OnPropertyChanged();
 
                 }
@@ -94,12 +110,14 @@ namespace ToDo.MVMM.ViewModels
             }
         }
 
-        public ICommand SubmitCommand { get; set; }
+        public ICommand SubmitCommand { get; }
 
         public EditTaskViewModel(NavigationHandler navigation, TaskObject task, TasksListViewModel tasksListViewModel) : base (navigation)
         {
             SubmitCommand = new SubmitCommand(tasksListViewModel, this);
             this.task = task;
+            Submittable = (StartDate > EndDate) ? false : true;
         }
+
     }
 }

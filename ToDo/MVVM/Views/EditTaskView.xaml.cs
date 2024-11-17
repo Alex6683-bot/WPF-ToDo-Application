@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ToDo.MVMM.Views
+namespace ToDo.MVVM.Views
 {
     /// <summary>
     /// Interaction logic for EditTaskView.xaml

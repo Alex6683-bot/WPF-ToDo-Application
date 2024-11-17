@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using ToDo.MVMM.Models;
-using ToDo.MVMM.Utilities;
-using ToDo.MVMM.ViewModels;
+using ToDo.MVVM.Models;
+using ToDo.MVVM.Utilities;
+using ToDo.MVVM.ViewModels;
 
 namespace ToDo.MVVM.Commands
 {

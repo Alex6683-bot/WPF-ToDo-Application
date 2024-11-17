@@ -10,8 +10,8 @@ namespace ToDo
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            My_Tasks.IsChecked = true;
         }
 
         private void Resize_Click(object sender, RoutedEventArgs e)

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ToDo.MVMM.Utilities
+namespace ToDo.MVVM.Utilities
 {
     abstract class CommandBase : ICommand
     {
@@ -14,5 +14,10 @@ namespace ToDo.MVMM.Utilities
         public virtual bool CanExecute(object? parameter) => true;
 
         public abstract void Execute(object? parameter);
+
+        public void OnCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

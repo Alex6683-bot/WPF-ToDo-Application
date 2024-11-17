@@ -3,11 +3,11 @@ using System.Security.Policy;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using ToDo.MVMM.Models;
-using ToDo.MVMM.Utilities;
+using ToDo.MVVM.Models;
+using ToDo.MVVM.Utilities;
 using ToDo.MVVM.Commands;
 
-namespace ToDo.MVMM.ViewModels
+namespace ToDo.MVVM.ViewModels
 {
     class TasksListViewModel : ViewModelBase
     {
@@ -41,7 +41,7 @@ namespace ToDo.MVMM.ViewModels
                 }
             }
         }
-        public ObservableCollection<TaskObject> Tasks { get; set; } = new ObservableCollection<TaskObject>();
+        public ObservableCollection<TaskObject> Tasks { get; } = new ObservableCollection<TaskObject>();
         public TaskObject SelectedTask 
         {
             get

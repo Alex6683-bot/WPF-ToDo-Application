@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 
-namespace ToDo.MVMM.Models
+namespace ToDo.MVVM.Models
 {
     public class TaskObject : INotifyPropertyChanged
     {

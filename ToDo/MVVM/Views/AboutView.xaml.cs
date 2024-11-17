@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ToDo.MVMM.Views
+namespace ToDo.MVVM.Views
 {
     /// <summary>
-    /// Interaction logic for MainPageView.xaml
+    /// Interaction logic for AboutView.xaml
     /// </summary>
-    public partial class MainPageView : UserControl
+    public partial class AboutView : UserControl
     {
-        public MainPageView()
+        public AboutView()
         {
             InitializeComponent();
         }

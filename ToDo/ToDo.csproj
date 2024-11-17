@@ -9,18 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Media\About.png" />
     <None Remove="Media\CalendarIcon.png" />
     <None Remove="Media\delete.png" />
     <None Remove="Media\edit.png" />
+    <None Remove="Media\home.png" />
     <None Remove="Media\ToDoLogo.ico" />
     <None Remove="Media\ToDoLogo.png" />
     <None Remove="Media\UserIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Media\About.png" />
     <Resource Include="Media\CalendarIcon.png" />
     <Resource Include="Media\delete.png" />
     <Resource Include="Media\edit.png" />
+    <Resource Include="Media\home.png" />
     <Resource Include="Media\ToDoLogo.ico" />
     <Resource Include="Media\ToDoLogo.png" />
     <Resource Include="Media\UserIcon.png" />
@@ -32,6 +36,7 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.1" />
+    <PackageReference Include="System.Runtime.WindowsRuntime.UI.Xaml" Version="4.7.0" />
   </ItemGroup>
 
 </Project>

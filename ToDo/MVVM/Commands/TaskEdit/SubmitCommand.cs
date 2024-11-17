@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToDo.MVMM.Utilities;
-using ToDo.MVMM.Models;
-using ToDo.MVMM.ViewModels;
+using ToDo.MVVM.Utilities;
+using ToDo.MVVM.Models;
+using ToDo.MVVM.ViewModels;
 
 namespace ToDo.MVVM.Commands
 {
@@ -22,10 +22,15 @@ namespace ToDo.MVVM.Commands
 
         public override void Execute(object? parameter)
         {
-            TasksListViewModel.IsEditing = false;
+            if (string.IsNullOrEmpty(EditTaskViewModel.Task.Name)) EditTaskViewModel.Task.Name = "New Task";
             if (!TasksListViewModel.Tasks.Contains(EditTaskViewModel.Task)) TasksListViewModel.Tasks.Add(EditTaskViewModel.Task);
 
             EditTaskViewModel.Task.UpdateProperties();
+            TasksListViewModel.IsEditing = false;
         }
+
+        public override bool CanExecute(object? parameter) => EditTaskViewModel.Submittable;
+
+
     }
 }

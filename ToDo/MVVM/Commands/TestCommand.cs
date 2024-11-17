@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToDo.MVMM.Utilities;
-using ToDo.MVMM.ViewModels;
+using ToDo.MVVM.Utilities;
+using ToDo.MVVM.ViewModels;
 
 namespace ToDo.MVVM.Commands
 {

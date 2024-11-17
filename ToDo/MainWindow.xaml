@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDo"
-        xmlns:custom="clr-namespace:ToDo.CustomControls" xmlns:view="clr-namespace:ToDo.MVMM.Views"
-        xmlns:ViewModels="clr-namespace:ToDo.MVMM.ViewModels"
+        xmlns:custom="clr-namespace:ToDo.CustomControls" xmlns:view="clr-namespace:ToDo.MVVM.Views"
+        xmlns:ViewModels="clr-namespace:ToDo.MVVM.ViewModels"
         mc:Ignorable="d" WindowStyle="None"
         Title="MainWindow" Height="450" Width="830"
         BorderThickness="0.5"
@@ -21,6 +21,11 @@
         <DataTemplate DataType="{x:Type ViewModels:TasksListViewModel}">
             <view:TasksView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:AboutViewModel}">
+            <view:AboutView/>
+        </DataTemplate>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
     </Window.Resources>
 
     <Grid>
@@ -100,6 +105,33 @@
 
         <!-- Side Panel -->
         <StackPanel Background="#242424" Grid.Row="1" Name="SidePanel">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type RadioButton}">
+                    <Setter Property="Margin" Value="7 5 7 0"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type RadioButton}">
+                                <Border Background="{TemplateBinding Background}" Height="40" Margin="{TemplateBinding Margin}" CornerRadius="5">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Width="7" Background="LightBlue" CornerRadius="2" Visibility="{TemplateBinding IsChecked, Converter={StaticResource BoolToVisibility}}"></Border>
+                                        <ContentPresenter Margin="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#383838"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="#383838"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Resources>
+            
             <custom:CustomButton IsEnabled="False"
                          Height="75"
                          CornerRadius="10"
@@ -135,7 +167,23 @@
             <Line X1="0" Y1="0" X2="300" Y2="0" Stroke="#616161" StrokeThickness="1"
                   Margin="0 8 0 0"/>
 
-            <custom:CustomButton Margin="15 20 15 0" Height="40" CornerRadius="5" Background="Gray"/>
+            <RadioButton x:Name="My_Tasks" Command="{Binding NavigationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+                <RadioButton.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Media\home.png" Width="20" Margin="5 0 0 0"/>
+                        <TextBlock Text="My Tasks" VerticalAlignment="Center" FontSize="20" Margin="10 0 0 0" Foreground="White"/>
+                    </StackPanel>
+                </RadioButton.Content>
+            </RadioButton>
+
+            <RadioButton x:Name="About" Command="{Binding NavigationCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+                <RadioButton.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Media\About.png" Width="20" Margin="5 0 0 0"/>
+                        <TextBlock Text="About" VerticalAlignment="Center" FontSize="20" Margin="10 0 0 0" Foreground="White"/>
+                    </StackPanel>
+                </RadioButton.Content>
+            </RadioButton>
         </StackPanel>
 
         <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentViewModel}"/>

@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
-using ToDo.MVMM.ViewModels;
+using ToDo.MVVM.ViewModels;
 
 namespace ToDo
 {

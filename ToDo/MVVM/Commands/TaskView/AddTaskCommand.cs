@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToDo.MVMM.Utilities;
-using ToDo.MVMM.ViewModels;
-using ToDo.MVMM.Models;
+using ToDo.MVVM.Utilities;
+using ToDo.MVVM.ViewModels;
+using ToDo.MVVM.Models;
 using System.Windows.Media;
 
 namespace ToDo.MVVM.Commands

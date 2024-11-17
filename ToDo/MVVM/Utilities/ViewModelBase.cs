@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ToDo.MVMM.Utilities
+namespace ToDo.MVVM.Utilities
 {
     class ViewModelBase : INotifyPropertyChanged
     {
