@@ -8,8 +8,9 @@ namespace ToDo.MVVM.Models
 {
     public class TaskObject : INotifyPropertyChanged
     {
-        private DateTime startTime = DateTime.Now;
-        private DateTime endTime = DateTime.Now;
+        private DateTime startTime = DateTime.Now.Date + new TimeSpan(0, 0, 0);
+        private DateTime endTime = DateTime.Now.Date + new TimeSpan(0, 0, 0);
+
         private string name;
         private SolidColorBrush colorTag;
 

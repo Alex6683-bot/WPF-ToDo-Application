@@ -28,8 +28,6 @@ namespace ToDo.MVVM.ViewModels
             this.navigation = navigation;
 
             tasksListViewModel = new TasksListViewModel(navigation);
-            tasksListViewModel.EditTaskVM = new EditTaskViewModel(navigation, new TaskObject("hh", new SolidColorBrush(Colors.White)), tasksListViewModel);
-
             aboutViewModel = new AboutViewModel(navigation);
 
             NavigationCommand = new NavigationCommand(this, navigation);
