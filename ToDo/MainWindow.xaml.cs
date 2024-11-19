@@ -5,7 +5,6 @@ namespace ToDo
 {
     public partial class MainWindow : Window
     {
-        
         public string UserName { get => Environment.UserName; }
         public MainWindow()
         {

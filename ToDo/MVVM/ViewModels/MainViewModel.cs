@@ -15,8 +15,8 @@ namespace ToDo.MVVM.ViewModels
         public ICommand NavigationCommand { get; }
 
         //ViewModels
-        public readonly TasksListViewModel tasksListViewModel;
-        public readonly AboutViewModel aboutViewModel;
+        public TasksListViewModel TasksListViewModel { get; }
+        public AboutViewModel AboutViewModel { get; }
 
         public ViewModelBase CurrentViewModel
         {
@@ -27,11 +27,11 @@ namespace ToDo.MVVM.ViewModels
         {
             this.navigation = navigation;
 
-            tasksListViewModel = new TasksListViewModel(navigation);
-            aboutViewModel = new AboutViewModel(navigation);
+            TasksListViewModel = new TasksListViewModel(navigation);
+            AboutViewModel = new AboutViewModel(navigation);
 
             NavigationCommand = new NavigationCommand(this, navigation);
-            navigation.CurrentViewModel = tasksListViewModel;
+            navigation.CurrentViewModel = TasksListViewModel;
 
             navigation.ViewModelChangedEvent += OnCurrentViewModelChanged;
             //navigation.CurrentViewModel = new EditTaskViewModel(navigation, new TaskObject("Do Something with my life", new SolidColorBrush(Colors.LightBlue)));

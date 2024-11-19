@@ -47,7 +47,7 @@
                                         <custom:CustomButton x:Name="Task_Edit"
                                                              Width="45" HorizontalAlignment="Right" Margin="0 0 30 0"
                                                              Background="#242424" HoverColor="Gray" 
-                                                             ActiveColor="DarkGray" PreviewMouseLeftButtonDown="Task_Edit_PreviewMouseLeftButtonDown"
+                                                             ActiveColor="DarkGray"
                                                              Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=DataContext.EditTaskCommand}"
                                                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}">
                                             <Image Source="../../Media/edit.png" Width="20"/>
@@ -127,8 +127,8 @@
                                  x:Name="Task_Add"
                                  Command="{Binding AddTaskCommand}"/>
 
-            <Popup IsOpen="{Binding IsEditing}" StaysOpen="True" AllowsTransparency="True"
-                   PlacementTarget="{Binding ElementName=MainGrid}" Placement="Center" Closed="Popup_Closed">
+            <Popup IsOpen="{Binding IsEditing}" StaysOpen="False" AllowsTransparency="True"
+                   PlacementTarget="{Binding ElementName=MainGrid}" Placement="Center">
                 <local:EditTaskView Width="470" Height="400" DataContext="{Binding EditTaskVM}"/>
             </Popup>
 

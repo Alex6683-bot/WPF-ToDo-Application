@@ -21,30 +21,9 @@ namespace ToDo.MVVM.Views
     /// </summary>
     public partial class TasksView : UserControl
     {
-        Border border = new Border();
         public TasksView()
         {
             InitializeComponent();
-        }
-
-        private void Popup_Closed(object sender, EventArgs e)
-        {
-            if (!((TasksListViewModel)DataContext).IsEditing)
-            {
-                MainGrid.Children.Remove(border);
-            }
-        }
-
-        private void Task_Edit_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (!((TasksListViewModel)DataContext).IsEditing)
-            {
-                border.Background = Brushes.Transparent;
-
-                Grid.SetRow(border, 0);
-                Grid.SetRowSpan(border, 1);
-                MainGrid.Children.Add(border);
-            }
         }
     }
 }

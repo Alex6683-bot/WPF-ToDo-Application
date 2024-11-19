@@ -47,6 +47,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            
             <StackPanel Orientation="Horizontal">
 
                 <Image Source="Media\ToDoLogo.png"
@@ -187,5 +188,7 @@
         </StackPanel>
 
         <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentViewModel}"/>
+
+        <Border Grid.ColumnSpan="2" Grid.Row="1" Visibility="{Binding TasksListViewModel.IsEditing}"/>
     </Grid>
 </Window>

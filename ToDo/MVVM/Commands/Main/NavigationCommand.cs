@@ -25,10 +25,10 @@ namespace ToDo.MVVM.Commands
             switch (radioButton.Name)
             {
                 case "My_Tasks":
-                    Navigation.CurrentViewModel = MainViewModel.tasksListViewModel;
+                    Navigation.CurrentViewModel = MainViewModel.TasksListViewModel;
                     return;
                 case "About":
-                    Navigation.CurrentViewModel = MainViewModel.aboutViewModel;
+                    Navigation.CurrentViewModel = MainViewModel.AboutViewModel;
                     return;
             }
         }
