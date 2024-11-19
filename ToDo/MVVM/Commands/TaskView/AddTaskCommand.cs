@@ -26,6 +26,8 @@ namespace ToDo.MVVM.Commands
         {
             TasksListViewModel.EditTaskVM = new EditTaskViewModel(Navigation, new TaskObject(TasksListViewModel.AddTaskName, new SolidColorBrush(Colors.LightBlue)), TasksListViewModel);
             TasksListViewModel.IsEditing = true;
+            TaskSerialization.Serialize(TasksListViewModel.Tasks);
+
         }
     }
 }

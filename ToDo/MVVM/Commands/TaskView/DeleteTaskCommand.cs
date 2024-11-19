@@ -13,17 +13,18 @@ namespace ToDo.MVVM.Commands
 {
     class DeleteTaskCommand : CommandBase
     {
-        TasksListViewModel tasksListViewModel;
-        private TasksListViewModel tasksListViewModel1;
+        TasksListViewModel TasksListViewModel;
 
         public DeleteTaskCommand(TasksListViewModel tasksListViewModel)
         {
-            this.tasksListViewModel = tasksListViewModel;
+            this.TasksListViewModel = tasksListViewModel;
         }
         public override void Execute(object? parameter)
         {
             ListViewItem item = (ListViewItem)parameter;
-            tasksListViewModel.Tasks.Remove((TaskObject)item.Content);
+            TasksListViewModel.Tasks.Remove((TaskObject)item.Content);
+            TaskSerialization.Serialize(TasksListViewModel.Tasks);
+
         }
     }
 }

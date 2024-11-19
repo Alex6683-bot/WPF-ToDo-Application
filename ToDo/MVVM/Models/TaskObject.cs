@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using Newtonsoft.Json;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
@@ -68,6 +69,7 @@ namespace ToDo.MVVM.Models
             ColorTag = colorTag;
         }
 
+        [JsonConstructor]
         public TaskObject(string name, SolidColorBrush colorTag, DateTime startDate, DateTime endDate)
         {
             Name = name;

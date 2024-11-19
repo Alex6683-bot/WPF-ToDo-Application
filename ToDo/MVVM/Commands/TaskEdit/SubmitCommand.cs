@@ -27,6 +27,8 @@ namespace ToDo.MVVM.Commands
 
             EditTaskViewModel.Task.UpdateProperties();
             TasksListViewModel.IsEditing = false;
+
+            TaskSerialization.Serialize(TasksListViewModel.Tasks);
         }
 
         public override bool CanExecute(object? parameter) => EditTaskViewModel.Submittable;
